@@ -25,7 +25,7 @@ export const WeatherSlider = ({ latitude, longitude }) => {
   }, [latitude, longitude]);
 
   return (
-    <div className="fixed inset-y-0 right-0 w-80 bg-white shadow-lg transform transition-transform duration-300 ease-in-out p-4" id="weather-slider">
+    <div className="fixed inset-y-0 top-24 right-0 w-80 h-60 rounded-md bg-orange-200 shadow-lg transform transition-transform duration-300 ease-in-out p-4" id="weather-slider">
       {loading ? (
         <p>Loading weather data...</p>
       ) : weather ? (
