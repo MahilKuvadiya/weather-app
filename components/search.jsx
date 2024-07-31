@@ -29,13 +29,18 @@ export const Search = ({ onSelectLocation }) => {
 
   return (
     <div className="w-full p-4 bg-white rounded shadow-md">
+        <div className='w-full flex'>
+            <h1 className='text-lg font-semibold'>
+                Mahil Kuvadiya
+            </h1>
       <input
         type="text"
         value={query}
         onChange={handleSearch}
         placeholder="Search for a city..."
         className="w-full p-2 border border-gray-300 rounded mb-4"
-      />
+        />
+        </div>
       {suggestions.length > 0 && (
         <ul className="list-none p-0 m-0">
           {suggestions.map((suggestion) => (

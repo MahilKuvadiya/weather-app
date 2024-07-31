@@ -6,12 +6,16 @@ import { Search } from "@/components/search";
 
 export const TomTomMap = () => {
   const mapElement = useRef(null);
+  const mapInitialized = useRef(false); // Add this ref to track initialization
   const [map, setMap] = useState(null);
   const [latitude, setLatitude] = useState(21.23109640716349);
   const [longitude, setLongitude] = useState(72.81864357229097);
 
   useEffect(() => {
     const initTomTom = async () => {
+      if (mapInitialized.current) {
+        return;
+      }
       const tt = await import("@tomtom-international/web-sdk-maps");
       const mapInstance = tt.map({
         key: "2bkK3wXqnBvlGCpuSyKv4r2uD1se4A87",
@@ -24,12 +28,11 @@ export const TomTomMap = () => {
         },
       });
       setMap(mapInstance);
-      console.log("Map initialized");
+      mapInitialized.current = true; // Mark as initialized
 
       mapInstance.addControl(new tt.NavigationControl());
 
       return () => {
-        console.log("Cleaning up map");
         mapInstance.remove();
       };
     };
@@ -38,7 +41,6 @@ export const TomTomMap = () => {
 
     return () => {
       if (map) {
-        console.log("Removing map");
         map.remove();
       }
     };
@@ -79,8 +81,8 @@ export const TomTomMap = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-full">
-      <div className="absolute inset-0" id="theMap" ref={mapElement} />
+    <div className="relative w-full h-screen">
+      <div className="absolute inset-0 w-full h-full" id="theMap" ref={mapElement} />
       <div className="absolute top-0 z-10 w-full">
         <Search onSelectLocation={handleSelectLocation} />
       </div>
