@@ -10,7 +10,7 @@ export const Search = ({ onSelectLocation }) => {
 
     if (searchQuery.length > 2) {
       try {
-        const response = await fetch(`http://api.weatherapi.com/v1/search.json?key=8ac46361c5dc4847b0c183502243107&q=${searchQuery}`);
+        const response = await fetch(`https://api.weatherapi.com/v1/search.json?key=8ac46361c5dc4847b0c183502243107&q=${searchQuery}`);
         const data = await response.json();
         setSuggestions(data);
       } catch (error) {

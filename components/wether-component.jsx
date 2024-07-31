@@ -7,7 +7,7 @@ export const WeatherSlider = ({ latitude, longitude }) => {
   const fetchWeather = async () => {
     try {
       const apiKey = 'YOUR_API_KEY';
-      const url = `http://api.weatherapi.com/v1/current.json?key=8ac46361c5dc4847b0c183502243107&q=${latitude},${longitude}`;
+      const url = `https://api.weatherapi.com/v1/current.json?key=8ac46361c5dc4847b0c183502243107&q=${latitude},${longitude}`;
       const response = await fetch(url);
       const data = await response.json();
       setWeather(data);
